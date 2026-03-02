@@ -1,36 +1,405 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Jiahang Liu</title>
+  <title>Jiahang Liu | Academic Homepage</title>
+  <meta name="description" content="Jiahang Liu - Senior undergraduate student at HIT (Shenzhen). Embodied AI navigation and 3D visual reconstruction." />
+
   <style>
-    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;margin:0;background:#0b0f17;color:#e7eaf0}
-    .wrap{max-width:860px;margin:0 auto;padding:56px 20px}
-    .card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:18px;padding:28px}
-    h1{font-size:34px;margin:0 0 10px}
-    p{line-height:1.7;margin:10px 0 0;color:rgba(231,234,240,.86)}
-    .links{display:flex;flex-wrap:wrap;gap:12px;margin-top:18px}
-    a.btn{display:inline-block;padding:10px 14px;border-radius:12px;text-decoration:none;color:#0b0f17;background:#e7eaf0;font-weight:600}
-    a.ghost{background:transparent;color:#e7eaf0;border:1px solid rgba(255,255,255,.2)}
-    footer{margin-top:22px;color:rgba(231,234,240,.55);font-size:13px}
+    :root{
+      --bg:#ffffff;
+      --text:#0b1220;
+      --muted:#5b6475;
+      --border:#e6e8ee;
+      --card:#fbfcff;
+      --link:#1a56db;
+      --chip:#f2f4f8;
+      --shadow: 0 6px 20px rgba(15, 23, 42, 0.06);
+      --radius: 16px;
+    }
+    @media (prefers-color-scheme: dark){
+      :root{
+        --bg:#0b1220;
+        --text:#e7ecf6;
+        --muted:#a7b0c3;
+        --border:#1f2a3f;
+        --card:#0f1930;
+        --link:#7aa2ff;
+        --chip:#111d35;
+        --shadow: 0 10px 28px rgba(0,0,0,0.35);
+      }
+    }
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background: var(--bg);
+      color: var(--text);
+      line-height:1.7;
+    }
+    a{ color: var(--link); text-decoration:none; }
+    a:hover{ text-decoration:underline; }
+
+    .container{
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 42px 20px 70px;
+    }
+
+    .layout{
+      display:grid;
+      grid-template-columns: 320px 1fr;
+      gap: 26px;
+      align-items:start;
+    }
+
+    .card{
+      border: 1px solid var(--border);
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    /* Left column */
+    .sidebar{
+      position: sticky;
+      top: 18px;
+      padding: 18px;
+    }
+    .avatar{
+      width: 100%;
+      height: 260px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      overflow:hidden;
+      background:
+        linear-gradient(0deg, rgba(0,0,0,0.02), rgba(0,0,0,0.02)),
+        repeating-linear-gradient(135deg, rgba(127,127,127,0.06) 0, rgba(127,127,127,0.06) 10px, rgba(127,127,127,0.02) 10px, rgba(127,127,127,0.02) 20px);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color: var(--muted);
+      font-size: 13px;
+      text-align:center;
+      padding: 14px;
+    }
+    .avatar img{
+      width:100%;
+      height:100%;
+      object-fit: cover;
+      display:block;
+    }
+    .name{
+      margin: 14px 0 4px;
+      font-size: 26px;
+      letter-spacing: -0.02em;
+    }
+    .affil{
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .chips{
+      margin-top: 12px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+    }
+    .chip{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding: 7px 10px;
+      border: 1px solid var(--border);
+      background: var(--chip);
+      border-radius: 999px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+    .links{
+      margin-top: 14px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+    }
+    .btn{
+      display:inline-block;
+      padding: 9px 12px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: var(--card);
+      font-weight: 650;
+      font-size: 14px;
+      color: var(--text);
+    }
+    .btn:hover{ text-decoration:none; transform: translateY(-1px); }
+    .btn:active{ transform: translateY(0); }
+
+    .mini{
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* Right column */
+    main{ padding: 6px 0; }
+
+    section{ margin-bottom: 22px; }
+    .section-card{ padding: 18px; }
+    h2{
+      margin: 0 0 10px;
+      font-size: 14px;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    p{ margin: 10px 0 0; }
+
+    /* Publications */
+    .pub{
+      display:grid;
+      grid-template-columns: 180px 1fr;
+      gap: 16px;
+      padding: 14px 0;
+      border-top: 1px solid var(--border);
+    }
+    .pub:first-of-type{ border-top: none; padding-top: 6px; }
+    .thumb{
+      width: 180px;
+      height: 110px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      overflow:hidden;
+      background:
+        linear-gradient(0deg, rgba(0,0,0,0.02), rgba(0,0,0,0.02)),
+        repeating-linear-gradient(135deg, rgba(127,127,127,0.06) 0, rgba(127,127,127,0.06) 10px, rgba(127,127,127,0.02) 10px, rgba(127,127,127,0.02) 20px);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color: var(--muted);
+      font-size: 12px;
+      text-align:center;
+      padding: 10px;
+    }
+    .thumb img{
+      width:100%;
+      height:100%;
+      object-fit: cover;
+      display:block;
+    }
+    .pub-title{
+      margin: 0 0 6px;
+      font-size: 16px;
+      line-height: 1.35;
+    }
+    .authors{
+      margin: 0 0 8px;
+      color: var(--muted);
+      font-size: 13.5px;
+    }
+    .pub-links{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      align-items:center;
+      margin-top: 8px;
+      font-size: 13.5px;
+    }
+    .pub-links a{
+      display:inline-flex;
+      gap:8px;
+      align-items:center;
+      padding: 7px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--chip);
+      text-decoration:none;
+      color: var(--text);
+    }
+    .pub-links a:hover{ text-decoration:none; transform: translateY(-1px); }
+    .note{
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    code{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 0.95em;
+    }
+
+    footer{
+      margin-top: 24px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 13px;
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+
+    @media (max-width: 920px){
+      .layout{ grid-template-columns: 1fr; }
+      .sidebar{ position: relative; top:auto; }
+    }
+    @media (max-width: 720px){
+      .pub{ grid-template-columns: 1fr; }
+      .thumb{ width:100%; height: 170px; }
+    }
   </style>
 </head>
+
 <body>
-  <div class="wrap">
-    <div class="card">
-      <h1>你好，我是 你的名字 👋</h1>
-      <p>一句话介绍你自己（例：前端/后端/产品/设计/数据）。</p>
+  <div class="container">
+    <div class="layout">
 
-      <div class="links">
-        <a class="btn" href="mailto:you@example.com">📮 Email</a>
-        <a class="btn ghost" href="https://github.com/yourname" target="_blank">GitHub</a>
-        <a class="btn ghost" href="https://www.linkedin.com/in/yourname" target="_blank">LinkedIn</a>
-      </div>
+      <!-- LEFT: profile -->
+      <aside class="card sidebar">
+        <!-- If you have a profile photo, put it at assets/profile.jpg and uncomment the img line -->
+        <div class="avatar"><img src="assets/profile.png" alt="Jiahang Liu"></div>
+        <div class="avatar">
+          Profile photo placeholder<br/>
+          (e.g., <code>assets/profile.jpg</code>)
+        </div>
 
-      <footer>© <span id="y"></span> Jiahang Liu · Powered by GitHub Pages</footer>
+        <h1 class="name">Jiahang Liu</h1>
+        <p class="affil">Senior Undergraduate · Computer Science and Technology</p>
+        <p class="affil">Harbin Institute of Technology (Shenzhen)</p>
+
+        <div class="chips">
+          <span class="chip">Embodied AI Navigation</span>
+          <span class="chip">3D Visual Reconstruction</span>
+        </div>
+
+        <div class="links">
+          <a class="btn" href="mailto:liu030526@gmail.com">Email</a>
+          <a class="btn" href="https://github.com/2003jiahang" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </div>
+
+        <div class="mini">
+          <div><strong>Bio</strong></div>
+          <div style="margin-top:6px;">
+            I work on embodied intelligence, with a focus on navigation and 3D scene reconstruction. I enjoy building
+            practical systems and simulators that bridge perception, reasoning, and decision-making.
+          </div>
+        </div>
+      </aside>
+
+      <!-- RIGHT: content -->
+      <main>
+
+        <section class="card section-card" id="about">
+          <h2>About</h2>
+          <p style="margin-top:0;">
+            I am a senior undergraduate student majoring in Computer Science and Technology at Harbin Institute of Technology (Shenzhen).
+            My research interests lie in embodied AI—especially navigation—and 3D visual reconstruction.
+          </p>
+        </section>
+
+        <section class="card section-card" id="publications">
+          <h2>Publications</h2>
+
+          <!-- TrackVLA++ -->
+          <div class="pub">
+            <div class="thumb">
+              <!-- You said you've uploaded the TrackVLA++ image. Expected path: assets/trackvla++.png -->
+              <img src="assets/trackvla++.png" alt="TrackVLA++ teaser">
+            </div>
+
+            <div>
+              <div class="pub-title">
+                <strong>TrackVLA++: Unleashing Reasoning and Memory Capabilities in VLA Models for Embodied Visual Tracking</strong>
+              </div>
+
+              <div class="authors">
+                <strong>Jiahang Liu</strong>*,
+                Yunpeng Qi*,
+                Jiazhao Zhang*,
+                Minghan Li,
+                Shaoan Wang,
+                Kui Wu,
+                Hanjing Ye,
+                Hong Zhang,
+                Zhibo Chen,
+                Fangwei Zhong,
+                Zhizheng Zhang†,
+                He Wang†
+              </div>
+
+              <div class="pub-links">
+                <a href="https://pku-epic.github.io/TrackVLA-plus-plus-Web/" target="_blank" rel="noopener noreferrer">Project Page</a>
+                <a href="https://arxiv.org/pdf/2510.07134" target="_blank" rel="noopener noreferrer">arXiv PDF</a>
+              </div>
+
+              <div class="note">
+                * Equal contribution. † Corresponding author.
+              </div>
+            </div>
+          </div>
+
+          <!-- NavGSim -->
+          <div class="pub">
+            <div class="thumb">
+              Teaser image placeholder<br/>
+              (e.g., <code>assets/navgsim.png</code>)
+              <!-- If you upload: assets/navgsim.png, replace the div above with: -->
+              <img src="assets/navgsim.png" alt="NavGSim teaser">
+             
+            </div>
+
+            <div>
+              <div class="pub-title">
+                <strong>NavGSim: High-Fidelity Gaussian Splatting Simulator for Large-Scale Navigation</strong>
+              </div>
+
+              <div class="authors">
+                <strong>Jiahang Liu</strong>*,
+                Yuanxing Duan*,
+                Jiazhao Zhang*,
+                Minghan Li,
+                Shaoan Wang,
+                Zhizheng Zhang†,
+                He Wang†
+              </div>
+
+              <div class="pub-links">
+                <!-- You haven't provided links yet; placeholders are here -->
+                <a href="#" onclick="return false;" title="Add link when available">Project Page (TBA)</a>
+                <a href="#" onclick="return false;" title="Add link when available">arXiv (TBA)</a>
+                <a href="#" onclick="return false;" title="Add link when available">Code (TBA)</a>
+              </div>
+
+              <div class="note">
+                * Equal contribution. † Corresponding author.
+              </div>
+            </div>
+          </div>
+
+        </section>
+
+        <section class="card section-card" id="contact">
+          <h2>Contact</h2>
+          <p style="margin-top:0;">
+            Email: <a href="mailto:liu030526@gmail.com">liu030526@gmail.com</a><br/>
+            GitHub: <a href="https://github.com/2003jiahang" target="_blank" rel="noopener noreferrer">https://github.com/2003jiahang</a>
+          </p>
+        </section>
+
+        <footer>
+          <div>© <span id="y"></span> Jiahang Liu</div>
+          <div>Built with GitHub Pages</div>
+        </footer>
+      </main>
+
     </div>
   </div>
-  <script>document.getElementById('y').textContent=new Date().getFullYear()</script>
+
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
