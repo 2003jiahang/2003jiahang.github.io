@@ -8,33 +8,27 @@
 
   <style>
     :root{
-      --bg:#ffffff;
-      --text:#0b1220;
-      --muted:#5b6475;
-      --border:#e6e8ee;
-      --card:#fbfcff;
-      --link:#1a56db;
-      --chip:#f2f4f8;
-      --shadow: 0 6px 20px rgba(15, 23, 42, 0.06);
-      --radius: 16px;
-    }
-    @media (prefers-color-scheme: dark){
-      :root{
-        --bg:#0b1220;
-        --text:#e7ecf6;
-        --muted:#a7b0c3;
-        --border:#1f2a3f;
-        --card:#0f1930;
-        --link:#7aa2ff;
-        --chip:#111d35;
-        --shadow: 0 10px 28px rgba(0,0,0,0.35);
-      }
+      --bg:#f6f8fc;
+      --bg-accent:#e9eefb;
+      --text:#1b2436;
+      --muted:#5d6880;
+      --border:#dde4f2;
+      --card:#ffffff;
+      --link:#184fb8;
+      --chip:#eef3ff;
+      --badge:#e9f8ef;
+      --badge-text:#1f7a3d;
+      --shadow: 0 10px 30px rgba(35, 58, 102, 0.08);
+      --radius: 18px;
     }
     *{ box-sizing:border-box; }
     body{
       margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
-      background: var(--bg);
+      font-family: "Avenir Next", "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      background:
+        radial-gradient(circle at 10% 10%, var(--bg-accent) 0%, transparent 45%),
+        radial-gradient(circle at 90% 0%, #f7fbff 0%, transparent 40%),
+        var(--bg);
       color: var(--text);
       line-height:1.7;
     }
@@ -44,7 +38,7 @@
     .container{
       max-width: 1120px;
       margin: 0 auto;
-      padding: 42px 20px 70px;
+      padding: 44px 20px 70px;
     }
 
     .layout{
@@ -71,27 +65,25 @@
       width: 100%;
       height: 260px;
       border-radius: 14px;
-      border: 1px solid var(--border);
+      border: none;
       overflow:hidden;
-      background:
-        linear-gradient(0deg, rgba(0,0,0,0.02), rgba(0,0,0,0.02)),
-        repeating-linear-gradient(135deg, rgba(127,127,127,0.06) 0, rgba(127,127,127,0.06) 10px, rgba(127,127,127,0.02) 10px, rgba(127,127,127,0.02) 20px);
+      background: #ffffff;
       display:flex;
       align-items:center;
       justify-content:center;
       color: var(--muted);
       font-size: 13px;
       text-align:center;
-      padding: 14px;
+      padding: 0;
     }
     .avatar img{
       width:100%;
       height:100%;
-      object-fit: cover;
+      object-fit: contain;
       display:block;
     }
     .name{
-      margin: 14px 0 4px;
+      margin: 14px 0 2px;
       font-size: 26px;
       letter-spacing: -0.02em;
     }
@@ -161,39 +153,56 @@
     /* Publications */
     .pub{
       display:grid;
-      grid-template-columns: 180px 1fr;
+      grid-template-columns: 280px 1fr;
       gap: 16px;
       padding: 14px 0;
       border-top: 1px solid var(--border);
     }
     .pub:first-of-type{ border-top: none; padding-top: 6px; }
     .thumb{
-      width: 180px;
-      height: 110px;
+      width: 280px;
+      height: 170px;
       border-radius: 12px;
       border: 1px solid var(--border);
       overflow:hidden;
-      background:
-        linear-gradient(0deg, rgba(0,0,0,0.02), rgba(0,0,0,0.02)),
-        repeating-linear-gradient(135deg, rgba(127,127,127,0.06) 0, rgba(127,127,127,0.06) 10px, rgba(127,127,127,0.02) 10px, rgba(127,127,127,0.02) 20px);
+      background: #ffffff;
       display:flex;
       align-items:center;
       justify-content:center;
       color: var(--muted);
       font-size: 12px;
       text-align:center;
-      padding: 10px;
+      padding: 0;
     }
     .thumb img{
       width:100%;
       height:100%;
-      object-fit: cover;
+      object-fit: contain;
       display:block;
     }
     .pub-title{
       margin: 0 0 6px;
       font-size: 16px;
       line-height: 1.35;
+    }
+    .pub-head{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: var(--badge);
+      color: var(--badge-text);
+      border: 1px solid #cdeed7;
+      font-size: 12px;
+      font-weight: 650;
+      white-space: nowrap;
     }
     .authors{
       margin: 0 0 8px;
@@ -225,6 +234,17 @@
       color: var(--muted);
       font-size: 13px;
     }
+    .tba{
+      margin-top: 8px;
+      display:inline-flex;
+      align-items:center;
+      padding: 7px 10px;
+      border-radius: 999px;
+      border: 1px dashed var(--border);
+      background: #fafbfd;
+      color: var(--muted);
+      font-size: 13.5px;
+    }
     code{
       font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
       font-size: 0.95em;
@@ -248,7 +268,7 @@
     }
     @media (max-width: 720px){
       .pub{ grid-template-columns: 1fr; }
-      .thumb{ width:100%; height: 170px; }
+      .thumb{ width:100%; height: 220px; }
     }
   </style>
 </head>
@@ -259,12 +279,7 @@
 
       <!-- LEFT: profile -->
       <aside class="card sidebar">
-        <!-- If you have a profile photo, put it at assets/profile.jpg and uncomment the img line -->
         <div class="avatar"><img src="assets/profile.png" alt="Jiahang Liu"></div>
-        <div class="avatar">
-          Profile photo placeholder<br/>
-          (e.g., <code>assets/profile.jpg</code>)
-        </div>
 
         <h1 class="name">Jiahang Liu</h1>
         <p class="affil">Senior Undergraduate · Computer Science and Technology</p>
@@ -283,8 +298,7 @@
         <div class="mini">
           <div><strong>Bio</strong></div>
           <div style="margin-top:6px;">
-            I work on embodied intelligence, with a focus on navigation and 3D scene reconstruction. I enjoy building
-            practical systems and simulators that bridge perception, reasoning, and decision-making.
+            I focus on building more general embodied intelligence.
           </div>
         </div>
       </aside>
@@ -306,13 +320,15 @@
           <!-- TrackVLA++ -->
           <div class="pub">
             <div class="thumb">
-              <!-- You said you've uploaded the TrackVLA++ image. Expected path: assets/trackvla++.png -->
               <img src="assets/trackvla++.png" alt="TrackVLA++ teaser">
             </div>
 
             <div>
-              <div class="pub-title">
-                <strong>TrackVLA++: Unleashing Reasoning and Memory Capabilities in VLA Models for Embodied Visual Tracking</strong>
+              <div class="pub-head">
+                <div class="pub-title">
+                  <strong>TrackVLA++: Unleashing Reasoning and Memory Capabilities in VLA Models for Embodied Visual Tracking</strong>
+                </div>
+                <span class="badge">ICRA 2026 Accepted</span>
               </div>
 
               <div class="authors">
@@ -344,16 +360,15 @@
           <!-- NavGSim -->
           <div class="pub">
             <div class="thumb">
-              Teaser image placeholder<br/>
-              (e.g., <code>assets/navgsim.png</code>)
-              <!-- If you upload: assets/navgsim.png, replace the div above with: -->
               <img src="assets/navgsim.png" alt="NavGSim teaser">
-             
             </div>
 
             <div>
-              <div class="pub-title">
-                <strong>NavGSim: High-Fidelity Gaussian Splatting Simulator for Large-Scale Navigation</strong>
+              <div class="pub-head">
+                <div class="pub-title">
+                  <strong>NavGSim: High-Fidelity Gaussian Splatting Simulator for Large-Scale Navigation</strong>
+                </div>
+                <span class="badge">ICRA 2026 Accepted</span>
               </div>
 
               <div class="authors">
@@ -367,10 +382,7 @@
               </div>
 
               <div class="pub-links">
-                <!-- You haven't provided links yet; placeholders are here -->
-                <a href="#" onclick="return false;" title="Add link when available">Project Page (TBA)</a>
-                <a href="#" onclick="return false;" title="Add link when available">arXiv (TBA)</a>
-                <a href="#" onclick="return false;" title="Add link when available">Code (TBA)</a>
+                <span class="tba">Links updating soon (no public URL yet)</span>
               </div>
 
               <div class="note">
