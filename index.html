@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Jiahang Liu</title>
+  <style>
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;margin:0;background:#0b0f17;color:#e7eaf0}
+    .wrap{max-width:860px;margin:0 auto;padding:56px 20px}
+    .card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:18px;padding:28px}
+    h1{font-size:34px;margin:0 0 10px}
+    p{line-height:1.7;margin:10px 0 0;color:rgba(231,234,240,.86)}
+    .links{display:flex;flex-wrap:wrap;gap:12px;margin-top:18px}
+    a.btn{display:inline-block;padding:10px 14px;border-radius:12px;text-decoration:none;color:#0b0f17;background:#e7eaf0;font-weight:600}
+    a.ghost{background:transparent;color:#e7eaf0;border:1px solid rgba(255,255,255,.2)}
+    footer{margin-top:22px;color:rgba(231,234,240,.55);font-size:13px}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <h1>你好，我是 你的名字 👋</h1>
+      <p>一句话介绍你自己（例：前端/后端/产品/设计/数据）。</p>
+
+      <div class="links">
+        <a class="btn" href="mailto:you@example.com">📮 Email</a>
+        <a class="btn ghost" href="https://github.com/yourname" target="_blank">GitHub</a>
+        <a class="btn ghost" href="https://www.linkedin.com/in/yourname" target="_blank">LinkedIn</a>
+      </div>
+
+      <footer>© <span id="y"></span> Jiahang Liu · Powered by GitHub Pages</footer>
+    </div>
+  </div>
+  <script>document.getElementById('y').textContent=new Date().getFullYear()</script>
+</body>
+</html>
